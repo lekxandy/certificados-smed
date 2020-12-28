@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>Certificados SMED - {% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="column">
+            <div class="hero-head">
+                <nav class="navbar">
+                    <div class="container">
+                        <div class="navbar-brand">
+                            <a class="navbar-item">
+                                <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo">
+                            </a>
+                            <span class="navbar-burger" data-target="navbarMenuHeroA">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </div>
+                        <div id="navbarMenuHeroA" class="navbar-menu">
+                            <div class="navbar-start">
+                                <a class="navbar-item" href="{{url_for('index')}}">
+                                    Formações
+                                </a>
+                                <a class="navbar-item" href="{{url_for('certificados')}}">
+                                    Meus certificados
+                                </a>
+                                {% if current_user.is_authenticated %}
+                                <a class="navbar-item" href="{{url_for('cadastrar_formacao')}}">
+                                    Cadastrar formação
+                                </a>
+                                {% endif %}
+                            </div>
+                            <div class="navbar-end">
+                                <div class="navbar-item">
+
+                                    <div class="buttons">
+                                        <a class="button is-primary" href="{{url_for('register')}}">
+                                            <strong>Cadastrar</strong>
+                                        </a>
+                                        <a class="button is-light" href="{{url_for('login')}}">
+                                            Entrar
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <span class="navbar-item">
+                                    {% if current_user.is_authenticated %}
+                                    {{ current_user.name }} <a href="{{url_for('logout')}}"> - sair</a></span>
+                                {% endif%}
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="container">
+
+            {% block main %}{% endblock %}
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Certificados</strong> by <a href="https://github.com/lekxandy/">Alexander Roberto dos Santos</a>
+            </p>
+        </div>
+    </footer>
+    {% block script %}{% endblock %}
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+</body>
+
+</html>
